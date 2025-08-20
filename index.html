@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editkaro.in Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #1e1e2f;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* 🌌 Spline Background */
+    .spline-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2; /* behind everything */
+      border: none;
+    }
+
+    /* ✨ Animated gradient overlay */
+    .bg-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(270deg, rgba(255,106,0,0.2), rgba(255,0,150,0.2), rgba(0,150,255,0.2));
+      background-size: 600% 600%;
+      animation: gradientMove 20s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #ccc;
+    }
+
+    .filter-buttons {
+      text-align: center;
+      margin: 30px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .filter-buttons button {
+      background: #ff6a00;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .filter-buttons button:hover {
+      background: #ff4500;
+    }
+
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: rgba(45, 45, 68, 0.9);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transform: scale(0.95);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 106, 0, 0.8), 
+                  0 0 50px rgba(255, 106, 0, 0.4);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+      border-bottom: 2px solid #ff6a00;
+      /* For GSAP animation, no static animation here */
+    }
+
+    .card h3 {
+      padding: 15px;
+      margin: 0;
+      background: rgba(30, 30, 47, 0.95);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .filter-buttons button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌌 Spline Background -->
+  <iframe src="https://my.spline.design/genkubgreetingrobot-j5wCb9V2TFFiw7TgBSSLoeyg/" frameborder="0" class="spline-bg"></iframe>
+
+  <!-- ✨ Gradient Overlay -->
+  <div class="bg-gradient"></div>
+
+  <header>
+    <h1>Editkaro.in Portfolio</h1>
+    <p>Showcasing short-form, long-form, gaming, anime, and more!</p>
+  </header>
+
+  <div class="filter-buttons">
+    <button data-filter="all">All</button>
+    <button data-filter="short">Short-form</button>
+    <button data-filter="long">Long-form</button>
+    <button data-filter="gaming">Gaming</button>
+    <button data-filter="anime">Anime</button>
+  </div>
+
+  <div class="portfolio">
+    <div class="card" data-category="short">
+      <img src="short.jpg" alt="Short-form Edit" class="animated-img">
+      <h3>Short-form Edit</h3>
+    </div>
+    <div class="card" data-category="long">
+      <img src="Long-form-videos-01-1080x675.jpg" alt="Long-form Edit" class="animated-img">
+      <h3>Long-form Edit</h3>
+    </div>
+    <div class="card" data-category="gaming">
+      <img src="images.jpeg" alt="Gaming Edit" class="animated-img">
+      <h3>Gaming Edit</h3>
+    </div>
+    <div class="card" data-category="anime">
+      <img src="83274-581386222_tiny.jpg" alt="Anime Edit" class="animated-img">
+      <h3>Anime Edit</h3>
+    </div>
+  </div>
+
+  <script>
+    // GSAP Intro Animations
+    gsap.from("header h1", {y: -50, opacity: 0, duration: 1, ease: "bounce"});
+    gsap.from("header p", {opacity: 0, delay: 0.5, duration: 1});
+    gsap.from(".filter-buttons button", {
+      y: 20, opacity: 0, stagger: 0.2, delay: 1, duration: 0.8, ease: "back"
+    });
+    gsap.from(".card", {
+      scale: 0.8, opacity: 0, stagger: 0.3, delay: 1.5, duration: 1, ease: "elastic"
+    });
+
+    // Animate images inside cards (floating + glowing)
+    gsap.to(".animated-img", {
+      y: -15,
+      boxShadow: "0px 0px 30px 5px rgba(255,106,0,0.5)",
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      duration: 2.5,
+      stagger: 0.3
+    });
+
+    // Filtering Logic
+    const buttons = document.querySelectorAll(".filter-buttons button");
+    const cards = document.querySelectorAll(".card");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const filter = button.getAttribute("data-filter");
+
+        cards.forEach(card => {
+          if (filter === "all" || card.getAttribute("data-category") === filter) {
+            gsap.to(card, {scale: 1, opacity: 1, duration: 0.5, display: "block"});
+          } else {
+            gsap.to(card, {scale: 0, opacity: 0, duration: 0.5, display: "none"});
+          }
+        });
+      });
+    });
+
+    // ✨ Floating + glowing pulse animation for cards
+    gsap.to(".card", {
+      y: -10,
+      boxShadow: "0px 0px 30px rgba(255,106,0,0.6)",
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      duration: 3,
+      stagger: 0.4
+    });
+  </script>
+
+</body>
+</html>
